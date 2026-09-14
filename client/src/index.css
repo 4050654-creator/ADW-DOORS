@@ -1,0 +1,989 @@
+@import "tailwindcss";
+
+/* =========================================================
+   ADW STORE — PREMIUM V3
+   ========================================================= */
+
+:root {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: #172033;
+  background: #f7fbff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #f7fbff;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* =========================================================
+   PREMIUM SKY
+   ========================================================= */
+
+.basant-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 76% 13%,
+      rgba(255, 247, 176, 0.98) 0,
+      rgba(255, 226, 112, 0.8) 4%,
+      rgba(255, 196, 66, 0.35) 11%,
+      transparent 23%
+    ),
+    radial-gradient(
+      ellipse at 20% 30%,
+      rgba(255, 255, 255, 0.25),
+      transparent 25%
+    ),
+    linear-gradient(
+      180deg,
+      #168fe8 0%,
+      #38bdf8 22%,
+      #60a5fa 43%,
+      #818cf8 64%,
+      #c084fc 81%,
+      #fb7185 100%
+    );
+}
+
+.basant-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background:
+    radial-gradient(
+      ellipse at 70% 100%,
+      rgba(255, 177, 82, 0.65),
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      transparent 60%,
+      rgba(251, 113, 133, 0.22) 100%
+    );
+}
+
+/* =========================================================
+   SUN
+   ========================================================= */
+
+.basant-sun {
+  position: absolute;
+  right: 10%;
+  top: 8%;
+
+  width: 135px;
+  height: 135px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      #fffde0 0%,
+      #fde68a 38%,
+      #fbbf24 72%,
+      #f59e0b 100%
+    );
+
+  box-shadow:
+    0 0 35px rgba(255, 231, 130, 0.9),
+    0 0 100px rgba(255, 198, 77, 0.55),
+    0 0 170px rgba(255, 177, 77, 0.28);
+
+  animation: sunPulse 5s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+  }
+}
+
+/* =========================================================
+   CLOUDS
+   ========================================================= */
+
+.basant-cloud {
+  position: absolute;
+
+  width: 150px;
+  height: 38px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.25);
+
+  filter: blur(1px);
+
+  animation: cloudMove 18s ease-in-out infinite;
+}
+
+.basant-cloud::before,
+.basant-cloud::after {
+  content: "";
+  position: absolute;
+
+  border-radius: 50%;
+  background: inherit;
+}
+
+.basant-cloud::before {
+  width: 72px;
+  height: 72px;
+
+  left: 22px;
+  bottom: 5px;
+}
+
+.basant-cloud::after {
+  width: 86px;
+  height: 86px;
+
+  right: 12px;
+  bottom: 2px;
+}
+
+@keyframes cloudMove {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(25px);
+  }
+}
+
+/* =========================================================
+   SMALL KITES
+   ========================================================= */
+
+.kite-shape {
+  position: absolute;
+
+  width: 62px;
+  height: 62px;
+
+  transform: rotate(45deg);
+
+  border-radius:
+    7px
+    14px
+    7px
+    14px;
+
+  box-shadow:
+    10px 18px 28px rgba(15, 23, 42, 0.2),
+    inset -7px -7px 15px rgba(0, 0, 0, 0.12);
+
+  transition: transform 0.3s ease;
+}
+
+.kite-shape::before {
+  content: "";
+
+  position: absolute;
+  inset: 7px;
+
+  border: 2px solid rgba(255, 255, 255, 0.48);
+
+  border-radius:
+    4px
+    9px
+    4px
+    9px;
+}
+
+.kite-shape::after {
+  content: "";
+
+  position: absolute;
+
+  width: 2px;
+  height: 190px;
+
+  top: 52px;
+  left: 50%;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.15)
+    );
+
+  transform:
+    rotate(-38deg)
+    translateX(-50%);
+
+  transform-origin: top;
+}
+
+/* =========================================================
+   KITE COLORS
+   ========================================================= */
+
+.kite-orange {
+  background:
+    linear-gradient(
+      135deg,
+      #fb923c 0%,
+      #f97316 45%,
+      #ef4444 100%
+    );
+}
+
+.kite-yellow {
+  background:
+    linear-gradient(
+      135deg,
+      #fef08a 0%,
+      #facc15 48%,
+      #f59e0b 100%
+    );
+}
+
+.kite-pink {
+  background:
+    linear-gradient(
+      135deg,
+      #fbcfe8 0%,
+      #f472b6 45%,
+      #db2777 100%
+    );
+}
+
+.kite-purple {
+  background:
+    linear-gradient(
+      135deg,
+      #ddd6fe 0%,
+      #a78bfa 45%,
+      #7c3aed 100%
+    );
+}
+
+.kite-blue {
+  background:
+    linear-gradient(
+      135deg,
+      #a5f3fc 0%,
+      #38bdf8 45%,
+      #2563eb 100%
+    );
+}
+
+.kite-green {
+  background:
+    linear-gradient(
+      135deg,
+      #bbf7d0 0%,
+      #4ade80 45%,
+      #059669 100%
+    );
+}
+
+/* =========================================================
+   KITE MOTIONS
+   ========================================================= */
+
+@keyframes kiteFloatOne {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(45deg);
+  }
+
+  30% {
+    transform:
+      translate3d(-13px, -18px, 0)
+      rotate(48deg);
+  }
+
+  60% {
+    transform:
+      translate3d(18px, -30px, 0)
+      rotate(41deg);
+  }
+}
+
+@keyframes kiteFloatTwo {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(45deg);
+  }
+
+  50% {
+    transform:
+      translate3d(25px, -25px, 0)
+      rotate(39deg);
+  }
+}
+
+@keyframes kiteFloatThree {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(45deg);
+  }
+
+  50% {
+    transform:
+      translate3d(-22px, 25px, 0)
+      rotate(51deg);
+  }
+}
+
+.kite-motion-1 {
+  animation:
+    kiteFloatOne 7s ease-in-out infinite;
+}
+
+.kite-motion-2 {
+  animation:
+    kiteFloatTwo 8s ease-in-out infinite;
+}
+
+.kite-motion-3 {
+  animation:
+    kiteFloatThree 9s ease-in-out infinite;
+}
+
+/* =========================================================
+   LARGE HERO KITE
+   ========================================================= */
+
+.hero-kite {
+  position: relative;
+
+  width: 245px;
+  height: 245px;
+
+  transform: rotate(45deg);
+
+  border-radius:
+    22px
+    44px
+    22px
+    44px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffb347 0%,
+      #fb7185 27%,
+      #ec4899 52%,
+      #a855f7 78%,
+      #6d28d9 100%
+    );
+
+  border: 8px solid rgba(255, 255, 255, 0.86);
+
+  box-shadow:
+    25px 35px 75px rgba(30, 41, 59, 0.35),
+    0 0 35px rgba(255, 255, 255, 0.2),
+    inset -18px -18px 35px rgba(0, 0, 0, 0.14);
+
+  animation:
+    heroKiteFloat 6s ease-in-out infinite;
+}
+
+.hero-kite::before {
+  content: "";
+
+  position: absolute;
+  inset: 23px;
+
+  border:
+    2px solid
+    rgba(255, 255, 255, 0.58);
+
+  border-radius:
+    17px
+    32px
+    17px
+    32px;
+}
+
+.hero-kite::after {
+  content: "";
+
+  position: absolute;
+
+  width: 3px;
+  height: 390px;
+
+  left: 50%;
+  top: 50%;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.08)
+    );
+
+  transform:
+    translate(-50%, -50%)
+    rotate(-45deg);
+}
+
+@keyframes heroKiteFloat {
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      rotate(45deg);
+  }
+
+  50% {
+    transform:
+      translateY(-17px)
+      rotate(48deg);
+  }
+}
+
+/* =========================================================
+   KITE CENTER
+   ========================================================= */
+
+.kite-center {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 23px;
+  height: 23px;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #fff7a8,
+      #facc15 55%,
+      #f59e0b
+    );
+
+  border: 3px solid rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 0 20px rgba(250, 204, 21, 0.7);
+}
+
+/* =========================================================
+   KITE TAIL
+   ========================================================= */
+
+.kite-tail {
+  position: absolute;
+
+  left: 50%;
+  top: 88%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 13px;
+
+  transform:
+    translateX(-50%)
+    rotate(-45deg);
+}
+
+.kite-tail span {
+  display: block;
+
+  width: 28px;
+  height: 38px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fbbf24,
+      #fb7185
+    );
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 100%
+    );
+
+  filter:
+    drop-shadow(
+      3px 7px 7px
+      rgba(15, 23, 42, 0.15)
+    );
+
+  animation:
+    tailWave 2.5s ease-in-out infinite;
+}
+
+.kite-tail span:nth-child(2) {
+  margin-left: 25px;
+  animation-delay: 0.2s;
+}
+
+.kite-tail span:nth-child(3) {
+  margin-left: -25px;
+  animation-delay: 0.4s;
+}
+
+.kite-tail span:nth-child(4) {
+  margin-left: 35px;
+  animation-delay: 0.6s;
+}
+
+@keyframes tailWave {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(7deg);
+  }
+}
+
+/* =========================================================
+   ROOFTOPS
+   ========================================================= */
+
+.rooftops {
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 125px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #27334f,
+      #111827
+    );
+
+  clip-path:
+    polygon(
+      0 60%,
+      5% 55%,
+      8% 43%,
+      12% 55%,
+      17% 48%,
+      20% 64%,
+      25% 34%,
+      29% 58%,
+      34% 45%,
+      38% 63%,
+      43% 31%,
+      48% 56%,
+      53% 45%,
+      58% 66%,
+      63% 35%,
+      67% 58%,
+      73% 43%,
+      78% 60%,
+      83% 31%,
+      88% 56%,
+      93% 45%,
+      100% 53%,
+      100% 100%,
+      0 100%
+    );
+
+  opacity: 0.96;
+}
+
+/* =========================================================
+   ROOFTOP GLOW
+   ========================================================= */
+
+.rooftops::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  top: 0;
+
+  height: 2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.25),
+      transparent
+    );
+}
+
+/* =========================================================
+   GLASS
+   ========================================================= */
+
+.basant-glass {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.84),
+      rgba(255, 255, 255, 0.58)
+    );
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.78);
+
+  backdrop-filter:
+    blur(18px);
+
+  -webkit-backdrop-filter:
+    blur(18px);
+
+  box-shadow:
+    0 15px 40px
+    rgba(15, 23, 42, 0.06);
+}
+
+/* =========================================================
+   PREMIUM PRODUCT CARD EFFECT
+   ========================================================= */
+
+.product-card-premium {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.product-card-premium:hover {
+  transform:
+    translateY(-8px);
+
+  box-shadow:
+    0 25px 55px
+    rgba(30, 41, 59, 0.13);
+}
+
+/* =========================================================
+   TEXT GLOW
+   ========================================================= */
+
+.basant-title-glow {
+  text-shadow:
+    0 8px 35px
+    rgba(15, 23, 42, 0.25);
+}
+
+/* =========================================================
+   SKY PARTICLES
+   ========================================================= */
+
+.sky-particle {
+  position: absolute;
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.65);
+
+  box-shadow:
+    0 0 10px
+    rgba(255, 255, 255, 0.7);
+
+  animation:
+    particleFloat 5s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translateY(-18px);
+  }
+}
+
+/* =========================================================
+   BUTTON SHINE
+   ========================================================= */
+
+.basant-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.basant-button::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 70%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.45),
+      transparent
+    );
+
+  transform:
+    skewX(-20deg);
+
+  transition:
+    left 0.65s ease;
+}
+
+.basant-button:hover::after {
+  left: 150%;
+}
+
+/* =========================================================
+   SECTION BACKGROUND
+   ========================================================= */
+
+.basant-section {
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(56, 189, 248, 0.08),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 90% 70%,
+      rgba(168, 85, 247, 0.07),
+      transparent 22%
+    ),
+    #f8fbff;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: #edf7ff;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      #38bdf8,
+      #8b5cf6,
+      #fb7185
+    );
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(
+      #0ea5e9,
+      #7c3aed,
+      #f43f5e
+    );
+}
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background: #fbbf24;
+  color: #172033;
+}
+
+/* =========================================================
+   MOBILE POLISH
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .basant-sun {
+    right: 8%;
+    top: 7%;
+
+    width: 90px;
+    height: 90px;
+  }
+
+  .hero-kite {
+    width: 180px;
+    height: 180px;
+  }
+
+  .kite-shape {
+    width: 45px;
+    height: 45px;
+  }
+
+  .rooftops {
+    height: 90px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   ADW-STORE — DARK MODE
+   Existing LIGHT design remains unchanged
+   ========================================================= */
+
+html.dark-mode,
+html.dark-mode body {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+html.dark-mode .bg-white {
+  background-color: #111827 !important;
+}
+
+html.dark-mode .bg-slate-50 {
+  background-color: #1e293b !important;
+}
+
+html.dark-mode .text-slate-900 {
+  color: #f8fafc !important;
+}
+
+html.dark-mode .text-slate-800 {
+  color: #e2e8f0 !important;
+}
+
+html.dark-mode .text-slate-700 {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+
+html.dark-mode .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+html.dark-mode .text-slate-400 {
+  color: #64748b !important;
+}
+
+html.dark-mode .border-slate-100 {
+  border-color: #1e293b !important;
+}
+
+html.dark-mode .border-slate-200 {
+  border-color: #334155 !important;
+}
+
+html.dark-mode input,
+html.dark-mode textarea,
+html.dark-mode select {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+html.dark-mode input::placeholder,
+html.dark-mode textarea::placeholder {
+  color: #64748b !important;
+}
+
+html.dark-mode header {
+  background-color: rgba(15, 23, 42, 0.88) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark-mode .shadow-2xl {
+  box-shadow:
+    0 20px 50px
+    rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark-mode .hover\:bg-orange-50:hover {
+  background-color:
+    rgba(249, 115, 22, 0.12) !important;
+}
+
+html.dark-mode ::selection {
+  background: #f59e0b;
+  color: #ffffff;
+}
