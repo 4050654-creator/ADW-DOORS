@@ -23,8 +23,13 @@ import Orders from "./pages/Orders";
 import OrderDetails from "./pages/OrderDetails";
 import Settings from "./pages/Settings";
 import OrderSuccess from "./pages/OrderSuccess";
+
+// Information pages
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
+import Terms from "./pages/Terms";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 // Payment pages
 import PaymentStatus from "./pages/PaymentStatus";
@@ -39,22 +44,6 @@ import AdminPayments from "./pages/admin/AdminPayments";
 // Shop pages
 import TrackOrder from "./pages/shop/TrackOrder";
 import Booking from "./pages/shop/Booking";
-
-function PlaceholderPage({ title }) {
-  return (
-    <section className="min-h-[70vh] bg-[#f8fbff] px-4 py-16">
-      <div className="mx-auto max-w-7xl">
-        <h1 className="text-4xl font-black text-slate-900">
-          {title}
-        </h1>
-
-        <p className="mt-3 text-slate-500">
-          This page is coming soon.
-        </p>
-      </div>
-    </section>
-  );
-}
 
 function NotFound() {
   return (
@@ -81,6 +70,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<MainLayout />}>
+
           {/* Main */}
           <Route
             path="/"
@@ -155,6 +145,32 @@ function App() {
             element={<Settings />}
           />
 
+          {/* Information */}
+          <Route
+            path="/about"
+            element={<About />}
+          />
+
+          <Route
+            path="/contact"
+            element={<Contact />}
+          />
+
+          <Route
+            path="/faq"
+            element={<FAQ />}
+          />
+
+          <Route
+            path="/terms"
+            element={<Terms />}
+          />
+
+          <Route
+            path="/privacy"
+            element={<PrivacyPolicy />}
+          />
+
           {/* Payment */}
           <Route
             path="/payment/:id"
@@ -171,8 +187,7 @@ function App() {
             path="/admin/products"
             element={<AdminProducts />}
           />
-<Route path="/about" element={<About />} />
-<Route path="/contact" element={<Contact />} />
+
           <Route
             path="/admin/orders"
             element={<AdminOrders />}
@@ -188,34 +203,12 @@ function App() {
             element={<AdminPayments />}
           />
 
-          {/* Other */}
-          <Route
-            path="/about"
-            element={
-              <PlaceholderPage title="About Us" />
-            }
-          />
-<Route
-  path="/about"
-  element={<PlaceholderPage title="About Us" />}
-/>
-
-<Route
-  path="/contact"
-  element={<PlaceholderPage title="Contact Us" />}
-/>
-          <Route
-            path="/contact"
-            element={
-              <PlaceholderPage title="Contact Us" />
-            }
-          />
-
           {/* 404 */}
           <Route
             path="*"
             element={<NotFound />}
           />
+
         </Route>
       </Routes>
     </BrowserRouter>
