@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
   Minus,
@@ -6,11 +6,14 @@ import {
   ShoppingBag,
   Trash2,
   ShieldCheck,
+  ArrowRight,
 } from "lucide-react";
 
 import { useCart } from "../context/CartContext";
 
 function Cart() {
+  const navigate = useNavigate();
+
   const {
     cartItems,
     subtotal,
@@ -20,6 +23,14 @@ function Cart() {
     clearCart,
     getProductPrice,
   } = useCart();
+
+  const handleCheckout = () => {
+    if (!cartItems || cartItems.length === 0) {
+      return;
+    }
+
+    navigate("/checkout");
+  };
 
   if (cartItems.length === 0) {
     return (
@@ -229,10 +240,11 @@ function Cart() {
 
             <button
               type="button"
-              disabled
-              className="mt-7 w-full cursor-not-allowed rounded-2xl bg-white/15 px-5 py-4 font-black text-white/60"
+              onClick={handleCheckout}
+              className="mt-7 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-orange-500 via-pink-500 to-purple-600 px-5 py-4 font-black text-white shadow-lg transition hover:-translate-y-1 hover:shadow-xl active:translate-y-0"
             >
               Checkout — Next Step
+              <ArrowRight size={19} />
             </button>
 
             <div className="mt-5 flex items-start gap-3 rounded-2xl bg-white/5 p-4">
@@ -242,8 +254,9 @@ function Cart() {
               />
 
               <p className="text-xs leading-5 text-white/60">
-                Your cart is saved on this device. Checkout and
-                real payment/order processing will be connected next.
+                Your cart is saved on this device. Continue to
+                checkout to enter your delivery details and place
+                your order.
               </p>
             </div>
           </aside>
@@ -254,3 +267,4 @@ function Cart() {
 }
 
 export default Cart;
+
