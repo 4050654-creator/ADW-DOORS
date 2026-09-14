@@ -1,7 +1,11 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/products";
-const CATEGORY_API_URL = "http://localhost:5000/api/categories";
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://adw-doors-production.up.railway.app/api";
+
+const PRODUCTS_URL = `${API_URL}/products`;
+const CATEGORY_API_URL = `${API_URL}/categories`;
 
 const getToken = () => {
   return localStorage.getItem("adw_store_token");
@@ -23,7 +27,7 @@ const authConfig = () => {
 // ===============================
 
 export const getProducts = async (params = {}) => {
-  const response = await axios.get(API_URL, {
+  const response = await axios.get(PRODUCTS_URL, {
     params,
   });
 
@@ -31,7 +35,7 @@ export const getProducts = async (params = {}) => {
 };
 
 export const getAdminProducts = async (params = {}) => {
-  const response = await axios.get(API_URL, {
+  const response = await axios.get(PRODUCTS_URL, {
     params: {
       ...params,
       admin: "true",
@@ -43,14 +47,16 @@ export const getAdminProducts = async (params = {}) => {
 };
 
 export const getProductById = async (id) => {
-  const response = await axios.get(`${API_URL}/${id}`);
+  const response = await axios.get(
+    `${PRODUCTS_URL}/${id}`
+  );
 
   return response.data;
 };
 
 export const createProduct = async (productData) => {
   const response = await axios.post(
-    API_URL,
+    PRODUCTS_URL,
     productData,
     authConfig()
   );
@@ -58,9 +64,12 @@ export const createProduct = async (productData) => {
   return response.data;
 };
 
-export const updateProduct = async (id, productData) => {
+export const updateProduct = async (
+  id,
+  productData
+) => {
   const response = await axios.put(
-    `${API_URL}/${id}`,
+    `${PRODUCTS_URL}/${id}`,
     productData,
     authConfig()
   );
@@ -70,7 +79,7 @@ export const updateProduct = async (id, productData) => {
 
 export const deleteProduct = async (id) => {
   const response = await axios.delete(
-    `${API_URL}/${id}`,
+    `${PRODUCTS_URL}/${id}`,
     authConfig()
   );
 
@@ -82,10 +91,15 @@ export const deleteProduct = async (id) => {
 // ===============================
 
 export const getCategories = async (admin = false) => {
-  const response = await axios.get(CATEGORY_API_URL, {
-    params: admin ? { admin: "true" } : {},
-    ...authConfig(),
-  });
+  const response = await axios.get(
+    CATEGORY_API_URL,
+    {
+      params: admin
+        ? { admin: "true" }
+        : {},
+      ...authConfig(),
+    }
+  );
 
   return response.data;
 };
@@ -99,3 +113,4 @@ export default {
   deleteProduct,
   getCategories,
 };
+

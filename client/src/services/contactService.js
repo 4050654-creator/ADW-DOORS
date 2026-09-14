@@ -1,25 +1,26 @@
 import axios from "axios";
 
 const API_URL =
-  "http://localhost:5000/api/contact";
+  import.meta.env.VITE_API_URL ||
+  "https://adw-doors-production.up.railway.app/api";
 
-export const sendContactMessage =
-  async (contactData) => {
-    const response =
-      await axios.post(
-        API_URL,
-        contactData,
-        {
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-        }
-      );
+const CONTACT_URL = `${API_URL}/contact`;
 
-    return response.data;
-  };
+export const sendContactMessage = async (contactData) => {
+  const response = await axios.post(
+    CONTACT_URL,
+    contactData,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  return response.data;
+};
 
 export default {
   sendContactMessage,
 };
+

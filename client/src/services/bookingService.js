@@ -1,6 +1,10 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/bookings";
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "https://adw-doors-production.up.railway.app/api";
+
+const BOOKINGS_URL = `${API_URL}/bookings`;
 
 const getToken = () => {
   return localStorage.getItem("adw_store_token");
@@ -23,7 +27,7 @@ const authConfig = () => {
 
 export const createBooking = async (bookingData) => {
   const response = await axios.post(
-    API_URL,
+    BOOKINGS_URL,
     bookingData,
     authConfig()
   );
@@ -33,7 +37,7 @@ export const createBooking = async (bookingData) => {
 
 export const getMyBookings = async () => {
   const response = await axios.get(
-    `${API_URL}/my`,
+    `${BOOKINGS_URL}/my`,
     authConfig()
   );
 
@@ -46,7 +50,7 @@ export const getMyBookings = async () => {
 
 export const getBookings = async (params = {}) => {
   const response = await axios.get(
-    API_URL,
+    BOOKINGS_URL,
     {
       params,
       ...authConfig(),
@@ -58,7 +62,7 @@ export const getBookings = async (params = {}) => {
 
 export const getBookingById = async (id) => {
   const response = await axios.get(
-    `${API_URL}/${id}`,
+    `${BOOKINGS_URL}/${id}`,
     authConfig()
   );
 
@@ -71,7 +75,7 @@ export const updateBookingStatus = async (
   adminNote = ""
 ) => {
   const response = await axios.patch(
-    `${API_URL}/${id}/status`,
+    `${BOOKINGS_URL}/${id}/status`,
     {
       status,
       adminNote,
@@ -84,7 +88,7 @@ export const updateBookingStatus = async (
 
 export const deleteBooking = async (id) => {
   const response = await axios.delete(
-    `${API_URL}/${id}`,
+    `${BOOKINGS_URL}/${id}`,
     authConfig()
   );
 
@@ -99,3 +103,4 @@ export default {
   updateBookingStatus,
   deleteBooking,
 };
+
