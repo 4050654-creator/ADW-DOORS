@@ -32,6 +32,50 @@ function Cart() {
     navigate("/checkout");
   };
 
+  const getImageUrl = (item) => {
+    if (!item) return "";
+
+    const images = item.images;
+
+    if (!images) return "";
+
+    if (Array.isArray(images) && images.length > 0) {
+      const firstImage = images[0];
+
+      if (typeof firstImage === "string") {
+        return firstImage;
+      }
+
+      if (typeof firstImage === "object" && firstImage !== null) {
+        return (
+          firstImage.url ||
+          firstImage.secure_url ||
+          firstImage.src ||
+          firstImage.imageUrl ||
+          firstImage.path ||
+          ""
+        );
+      }
+    }
+
+    if (typeof images === "string") {
+      return images;
+    }
+
+    if (typeof images === "object") {
+      return (
+        images.url ||
+        images.secure_url ||
+        images.src ||
+        images.imageUrl ||
+        images.path ||
+        ""
+      );
+    }
+
+    return "";
+  };
+
   if (cartItems.length === 0) {
     return (
       <section className="min-h-screen bg-[#f8fbff] px-4 py-16">
@@ -108,6 +152,7 @@ function Cart() {
           <div className="space-y-4">
             {cartItems.map((item) => {
               const price = getProductPrice(item);
+              const imageUrl = getImageUrl(item);
 
               return (
                 <div
@@ -116,11 +161,15 @@ function Cart() {
                 >
                   <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
                     <div className="h-28 w-full shrink-0 overflow-hidden rounded-2xl bg-gradient-to-br from-sky-100 to-orange-100 sm:w-28">
-                      {item.images?.length > 0 ? (
+                      {imageUrl ? (
                         <img
-                          src={item.images[0]}
-                          alt={item.name}
-                          className="h-full w-full object-cover"
+                          src={imageUrl}
+                          alt={item.name || "Basant product"}
+                          className="h-full w-full object-contain p-2"
+                          loading="lazy"
+                          onError={(event) => {
+                            event.currentTarget.style.display = "none";
+                          }}
                         />
                       ) : (
                         <div className="flex h-full items-center justify-center text-5xl">
@@ -149,7 +198,9 @@ function Cart() {
                         <div className="flex items-center overflow-hidden rounded-xl border border-slate-200">
                           <button
                             type="button"
-                            onClick={() => decreaseQuantity(item._id)}
+                            onClick={() =>
+                              decreaseQuantity(item._id)
+                            }
                             className="p-2.5 transition hover:bg-orange-50 hover:text-orange-500"
                             aria-label="Decrease quantity"
                           >
@@ -162,8 +213,12 @@ function Cart() {
 
                           <button
                             type="button"
-                            onClick={() => increaseQuantity(item._id)}
-                            disabled={item.quantity >= item.stock}
+                            onClick={() =>
+                              increaseQuantity(item._id)
+                            }
+                            disabled={
+                              item.quantity >= item.stock
+                            }
                             className="p-2.5 transition hover:bg-orange-50 hover:text-orange-500 disabled:cursor-not-allowed disabled:opacity-40"
                             aria-label="Increase quantity"
                           >
@@ -173,7 +228,9 @@ function Cart() {
 
                         <button
                           type="button"
-                          onClick={() => removeFromCart(item._id)}
+                          onClick={() =>
+                            removeFromCart(item._id)
+                          }
                           className="inline-flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-bold text-red-500 transition hover:bg-red-50"
                         >
                           <Trash2 size={15} />
@@ -188,7 +245,8 @@ function Cart() {
                       </p>
 
                       <p className="mt-1 text-2xl font-black text-slate-900">
-                        Rs. {(price * item.quantity).toLocaleString()}
+                        Rs.{" "}
+                        {(price * item.quantity).toLocaleString()}
                       </p>
                     </div>
                   </div>
@@ -267,4 +325,3 @@ function Cart() {
 }
 
 export default Cart;
-
